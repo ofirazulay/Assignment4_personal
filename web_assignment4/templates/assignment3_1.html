@@ -1,0 +1,76 @@
+{% extends 'basicPage.html' %}
+
+      {% set Navlink1 = "/assignment3_1"    %}
+      {% set Navlink2 = "/assignment3_2"    %}
+      {% set NavlinkName1 = 'Ofir Profile'    %}
+      {% set NavlinkName2 = 'Forms Page'    %}
+
+    {% set navColor = '#8eb4ee' %}
+
+{% set userFirstName= user.first_name | title() | default('User', true)%}
+{% set userLastName= user.last_name | title() %}
+{% set pageTitle =  'Welcome To ' + userFirstName + ' ' + userLastName + ' Page'%}
+{% set footerTitle =  'find ' + userFirstName + ' ' + userLastName + ' in social media'%}
+
+
+
+
+{% block pageBody %}
+    {{ super() }}
+ {% if user %}
+     <div id="userInformation">
+     <h2><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.first_name | title() | default('User', true)}} Details:</h2>
+
+    {% for key, value in user.items() %}
+                 {% if key=="email" %}
+                        <p>{{ key}}: {{ value}}</p>
+                    {% else %}
+                        <p>{{ key |replace("_", " ") | title()}}: {{ value | title() }}</p>
+                {% endif %}
+    {% endfor %}
+
+
+     <h2><i class="fa fa-black-tie" aria-hidden="true"></i> {{ user.first_name | title() | default('User', true)}} Hobbies:</h2>
+    {% if hobbies %}
+        <ul>
+            {% for hobbie in hobbies |unique()|sort() %}
+                <li>{{ hobbie |lower() }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <h4> {{ user.first_name | title() | default('User', true)}} Did not define any hobbies </h4>
+        {% endif %}
+
+
+        <h2><i class="fa fa-music" aria-hidden="true"></i> {{ user.first_name | title()| default('User', true)}} preferences in music:</h2>
+
+        {% if preferences_in_music_dict %}
+            <table>
+                {% for key, values in preferences_in_music_dict.items()%}
+                   <tr>
+                        <th> {{ key|title()| default('Other Gunners', true)}} </th>
+                         {% for  value in values|sort()|unique() %}
+                           <td> {{ value|capitalize()}} </td>
+                        {% endfor %}
+                   </tr>
+                {% endfor %}
+            </table>
+                {% if favorit_singer %}
+                    <a class=youTubeLink href=/mySong>Click here to visit {{ user.first_name | title() | default('User', true) }}'s favorite singer youtube page </a>
+                {% endif %}
+        {% else %}
+            <h4> {{ user.first_name | title() | default('User', true)}} Did not define any preferences in music </h4>
+        {% endif %}
+
+    </div>
+
+
+
+ {% else %}
+     <h1>user not found</h1>
+ {% endif %}
+
+
+{% endblock %}
+
+

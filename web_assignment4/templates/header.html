@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link  href= "{{ url_for('static', filename='style.css') }}" rel="stylesheet"/>
+    <script defer src="{{ url_for('static', filename='myFunctions.js') }}"></script>
+
+</head>
+<body>
+{% include 'ex3NavBar.html' %}
+
+ <div class="header1">
+        pet food israel.<span class="catIcon" ><img src="{{ url_for('static', filename='catIcon.jpg.png') }}" alt=""style="width:60px" ></span>
+       </div>
+
+ <div class="headerphoto">
+        <div class="headerphotoText"><h1>Where pets are a part of the family...</h1></div>
+    </div><br>
+
+
+</body>
+</html>

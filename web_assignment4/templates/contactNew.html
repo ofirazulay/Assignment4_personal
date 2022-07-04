@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+
+
+</head>
+<body>
+   {% set Navlink1 = "/"    %}
+      {% set Navlink2 = "/contact"    %}
+      {% set Navlink3 = "/assignment3_1"    %}
+      {% set Navlink4 = "/assignment_4"    %}
+
+      {% set NavlinkName1 = 'Home Page'    %}
+      {% set NavlinkName2 = 'Contact Us'    %}
+      {% set NavlinkName3 = 'assignment3'    %}
+      {% set NavlinkName4 = 'assignment4'    %}
+
+      {% set navColor = '#e7d3d3' %}
+
+{% include 'header.html' %}
+
+    
+<span id="getDetails" >
+    
+    <span class="circles">
+        <div class="PhoneIcon"><i class="fa fa-phone" style="font-size:25px"></i></div>
+        <div  class="circlesdiv" id="circle1"></div>
+        <div class="circlesdiv" id="circle2"></div>
+    </span>
+    
+        <h1  id="touch">Get in touch.</h1> <form action="URL">
+      
+
+        <label for="First Name">First Name</label><br>
+        <input class="inputClass" type="text" id="First Name" name="First Name" ><br><br>
+
+        <label for="last Name">last Name</label><br>
+        <input class="inputClass" type="text" id="last Name" name="last Name" ><br><br>
+
+        <label for="Date Of Birth">Date Of Birth</label><br>
+        <input class="inputClass" type="date" id="Date Of Birth" name="Date Of Birth" ><br><br>
+
+        <label for="email">email</label> <br>
+        <input class="inputClass" type="email" id="email" name="email"><br><br>
+
+        <label for="phone number">phone number</label> <br>
+        <input class="inputClass" type="tel" id="phone number" name="phone number"><br><br>
+        
+        <label for="number of pets">number of pets</label><br>
+        <input class="inputClass" type="number" id="number of pets" name="number of pets" ><br><br>
+            </form>
+
+        <span id="submitClick">
+            <button id="submitContact" class="click" onclick="typeWriter()">submit details</button><br>
+        </span>
+        <p id="errorMessage"></p>
+
+    </span>
+      
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block pageConections %}
+        <link  href="{{ url_for('static', filename='assignment3Styling.css') }}" rel="stylesheet"/>
+    {% endblock %}
+
+</head>
+<body>
+
+ {% include('assignment3_header.html') %}
+    {% block pageBody %}
+            <a class="aLinks" href="/">back to pat food israel site</a>
+    {% endblock %}
+
+  {% block footerBody %}
+    {% include('footer.html') %}
+  {% endblock %}
+
+</body>
+</html>

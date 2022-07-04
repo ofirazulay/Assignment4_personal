@@ -1,0 +1,100 @@
+
+
+.insertionFormDiv, .RemoveFormDiv,.updateFormDiv, .FE_outerFormDiv{
+	background: #c8d4e3;
+	width: 700px;
+	height: auto;
+	top:50%;
+	left: 50%;
+	margin: auto;
+  	padding: 30px 30px 30px 30px;
+	text-align: center;
+	color: #465359;
+	margin-top: 30px;
+	border-radius: 15px;
+}
+
+.inputBox{
+    padding: 15px;
+    background-color:white;
+    color: #09426b;
+    text-align: center;
+    border-radius: 13px;
+    border: 1px solid rgb(229, 219, 219);
+    box-shadow: 2px 2px 2px rgb(229, 219, 219);
+  	margin: 10px;
+}
+
+#searchBtn {
+	background-color: #62ad65;
+	color: #EBEBEB;
+	border-radius: 18px;
+	box-shadow: 0px 0px 0px rgb(229, 219, 219);
+	border: 0px solid rgb(229, 219, 219);
+	font-size: 20px;
+	padding: 15px;
+
+}
+
+#searchBtn:hover{
+	    transform: translateY(7px);
+}
+
+#user_input_outer{
+		padding: 5px;
+}
+
+#formsDiv{
+	align-items: center;
+	text-align: center;
+	left: 25%;
+
+
+}
+.FE_outerFormDiv{
+	left: 25%;
+	width: 600px;
+}
+
+/* alert style */
+
+
+#flashed_messages{
+font-family:Quicksand;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.error,.success{
+  width:50%;
+  margin:20px auto;
+  padding:30px;
+  position:relative;
+  border-radius:5px;
+  box-shadow:0 0 15px 5px #ccc;
+}
+.success {
+	background-color: #a8f0c6;
+}
+.error{
+	background-color: #d25c5c;
+}
+
+.close{
+  position:absolute;
+  width:30px;
+  height:30px;
+  opacity:0.5;
+  border-width:1px;
+  border-style:solid;
+  border-radius:50%;
+  right:15px;
+  top:25px;
+  text-align:center;
+  font-size:1.6em;
+  cursor:pointer;
+}
+
+#alertDiv{
+	text-align: center;
+}

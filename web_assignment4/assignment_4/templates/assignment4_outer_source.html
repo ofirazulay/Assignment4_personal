@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script defer src="{{ url_for('assignment_4.static', filename='fetchFunctionFE.js') }}"></script>
+    <link  href= "{{ url_for('assignment_4.static', filename='FormsStyling.css') }}" rel="stylesheet"/>
+
+</head>
+<body>
+ {% set Navlink1 = "/assignment_4"    %}
+      {% set Navlink2 = "/assignment4/users"    %}
+      {% set Navlink3 = "/assignment4/outer_sourse"    %}
+      {% set NavlinkName1 = 'assignment_4-DB forms'    %}
+      {% set NavlinkName2 = '/assignment4/users'    %}
+      {% set NavlinkName3 = '/assignment4/outer_source'    %}
+<div class="header">
+          {% set pageTitle =  'outer source' %}
+         {% include('assignment3_header.html') %}
+    </div>
+
+<div id="formsDiv">
+   <div class="FE_outerFormDiv">
+       <h1> Front-End</h1>
+       <form id="frm1" >
+     <h4>Select ID to view user information:
+     <input class="inputBox" id="user_input_outer" type="number" name="user_ID" placeholder="user ID" min="1" max="12" required></h4>
+    </form>
+         <h3> <button class="inputBox" id="searchBtn" onclick="myFunction()">search user</button></h3>
+         <main>
+        </main>
+    </div>
+
+    <div class="FE_outerFormDiv">
+        <h1> Back-End</h1>
+        <form action="/fetch_backEnd" >
+            <h4>Select ID to view user information:
+     <input class="inputBox" id="user_input_outer" type="number" name="user_ID_BE" placeholder="user ID" min="1" max="12" required></h4>
+        <input class="inputBox" id="searchBtn" type="submit" value="Search User">
+    </form>
+
+      {% if userEmail %}
+
+            <div class="polaroid" style="background-color: white; width: 50%;margin-bottom: 25px; margin-left: 25%;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <img style=" width:100%" src="{{picture}}" alt="Profile Picture"/>
+             <div class="container" style="padding: 10px 20px " >
+            <h4> {{userFirstName}} {{userLastName}}</h4>
+                 <h6> email:  {{userEmail}} </h6>
+               <a href="mailto:{{ userEmail }}">Send Email</a>
+              </div>
+            </div>
+    {% endif %}
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

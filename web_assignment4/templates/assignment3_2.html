@@ -1,0 +1,105 @@
+{% extends 'basicPage.html' %}
+
+
+      {% set Navlink1 = "/assignment3_1"    %}
+      {% set Navlink2 = "/assignment3_2"    %}
+      {% set NavlinkName1 = 'Ofir Profile'    %}
+      {% set NavlinkName2 = 'Forms Page'    %}
+
+      {% set logOutBotClass = "aLinks"    %}
+      {% set logOutBotId = "logOutBot"    %}
+      {% set logOutBotIdHref = "/log_out"    %}
+      {% set logOutBotIdStatment = 'log-Out'    %}
+      {% set navColor = '#8eb4ee' %}
+
+
+
+
+        {% if session['registered'] %}
+            {% set pageTitle =  'Welcome ' +  session['username'] | title()  + '!  here you can Search Users ' %}
+        {% else %}
+            {% set pageTitle =  'Welcome! here you can Search Users or Register' %}
+        {% endif %}
+
+
+
+ {% block pageBody %}
+     {{ super() }}
+     <div class="formsContainer">
+
+     <div id="formsDiv">
+     <h2>Search User</h2>
+         <form action="/assignment3_2">
+                <input class="inputBox" type="text" name="user_email" placeholder="email">
+                <input class="inputBox" type="text" name="user_ID" placeholder="ID">
+                <input class="inputBox" id="submitBot" type="submit" value="search">
+            </form>
+
+
+          {% if user_name %}
+              <ol>
+            <h2>User Name: {{ user_name| title() }}</h2>
+            <P>NickName: {{ user_nickName }}</P>
+            <P>Email: {{ user_email }}</P>
+            <P>Gender: {{ user_Gender }}</P>
+            <P>Age: {{ user_age }}</P>
+            <P>ID: {{ user_ID }}</P>
+              </ol>
+        {% endif %}
+
+        {% if message %}
+            <h3 style="color: red">{{ message }}</h3>
+        {% endif %}
+
+        {% if users_list %}
+            <ol>
+                {% for k, values in users_list.items() %}
+                    <h2>{{k}}:
+                    </h2>
+                     {% for key, value in values.items() %}
+                         {% if key!='user_password' %}
+                             {% if key=='user_email' %}
+                                <p>
+                                 {{ key|replace("_", " ")| title()}} : {{ value}}
+                                </p>
+                                 {% else %}
+                                <p>
+                                 {{ key|replace("_", " ")| title()}} : {{ value| title()}}
+                                </p>
+                            {% endif %}
+                         {% endif %}
+                     {% endfor %}
+
+                {% endfor %}
+
+            </ol>
+        {% endif %}
+
+    </div>
+        {% if session['registered'] %}
+        {% else %}
+     <div id="formsDiv">
+     <h2>Registration</h2>
+        <form action="/assignment3_2" method="post">
+            <input class="inputBox" type="text" name="user_name" placeholder="Username" required>
+            <input class="inputBox" type="text" name="user_nickName" placeholder="nickName (5-10 chars)" minlength="5" maxlength="10" required>
+            <input class="inputBox" type="text" name="user_email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+            <select class="inputBox" list="user_Gender" name="user_Gender" placeholder="Gender" required ><br>
+                                <option class="inputBox" value="male"> male</option>
+                                <option class="inputBox" value="female">female</option>
+                                </select><br>
+            <input class="inputBox" type="number" name="user_age" placeholder="age" min="18" max="92" required><br>
+            <input class="inputBox" type="text" name="user_ID" placeholder="ID (9 digits)" pattern="[0-9]{9}" required>
+            <input class="inputBox" type="password" name="user_password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+            <input class="inputBox" id="regBot" type="submit" value="register">
+        </form>
+     {% if RegistrationMessage %}
+            <h3 style="color: red">{{ RegistrationMessage }}</h3>
+        {% endif %}
+        </div>
+     </div>
+ {% endif %}
+    {% endblock %}
+ {% block footerBody %}
+  {% endblock %}
+

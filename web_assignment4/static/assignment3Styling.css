@@ -1,0 +1,94 @@
+
+#userInformation, #formsDiv{
+    border: #293956 3px solid;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 60%;
+    padding: 50px;
+    font-family: 'Lato', sans-serif;
+    font-weight:300;
+    letter-spacing: 1px;
+    grid-area: menu;
+
+}
+#formsDiv{
+         float: left;
+        margin: 30px;
+        align-items: center;
+        width: 40%;
+}
+
+ul li {
+  list-style-position: inside;
+}
+
+tr {  float:left; font-size: 11px; }
+th, td { display: block;
+ border: 1px solid #ddd;
+  padding: 8px;text-align:  center;}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #142357;
+  color: white;
+text-align:  center;
+}
+
+table{
+    border-collapse: collapse;
+  width: 100%;
+}
+
+.aLinks{
+  background-color: #293956;
+  color: white;
+  border-radius:7px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 25px;
+  display: inline-block;
+  line-height: 2;
+  text-decoration: none;
+  transition: ease .25s;
+    font-family: Roboto;
+
+}
+
+.aLinks:hover, #submitBot:hover, #regBot:hover{
+    transform: translateY(7px);
+}
+
+.inputBox{
+    padding: 15px;
+    background-color:white;
+    color: #09426b;
+    text-align: center;
+    border-radius: 13px;
+    border: 1px solid rgb(229, 219, 219);
+    box-shadow: 2px 2px 2px rgb(41, 57, 86);
+  margin: 10px;
+}
+
+#submitBot, #regBot{
+       background-color: #0a3554;
+      box-shadow: 0px 0px 0px rgb(41, 57, 86);
+  color: white;
+}
+#logOutBot{
+   background-color: #8d1414;
+    color: white;
+    font-size: 15px;
+}
+
+#usetLogdIn{
+  font-size: 23px;
+    margin-top:0px;
+    color: #0a3554;
+    font-family: "Lucida Sans Unicode";
+}
+
+
+
+
+

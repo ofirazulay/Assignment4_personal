@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link  href= "{{ url_for('assignment_4.static', filename='assignment_4_TableStyling.css') }}" rel="stylesheet"/>
+    <link  href= "{{ url_for('assignment_4.static', filename='FormsStyling.css') }}" rel="stylesheet"/>
+    <script defer src="{{ url_for('assignment_4.static', filename='update_functions.js') }}"></script>
+
+
+
+    <link rel="stylesheet"
+              href=
+            "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity=
+                "sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+              crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+<body>
+      {% set Navlink1 = "/"    %}
+      {% set Navlink2 = "/assignment_4"    %}
+      {% set Navlink3 = "/assignment4/users"    %}
+      {% set Navlink4 = "/assignment4/outer_sourse"    %}
+      {% set NavlinkName1 = 'back to pet-food-israel'    %}
+      {% set NavlinkName2 = 'assignment4-DB forms'    %}
+      {% set NavlinkName3 = '/assignment4/users'    %}
+      {% set NavlinkName4 = '/assignment4/outer_source'    %}
+
+    <div class="header">
+          {% set pageTitle =  'Users Information' %}
+         {% include('assignment3_header.html') %}
+    </div>
+
+
+      {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class="{{category}}" id="alertDiv">
+        <h3> {{category}}:</h3>
+        <h4 id="flashed_messages">{{ message }}</h4>
+            {% if category=='success' %}
+            <a href="#TableView" style="text-decoration: none; color: #7558b9; text-align: center " >View updated user table</a>
+               {% endif %}
+        <a class="close" style="display:block; text-decoration: none;" onclick="closeFunction()">&times;</a>
+        </div>
+    {% endfor %}
+
+
+    <div class="insertionFormDiv">
+    <h2>insert a new user</h2>
+        <form action="/insert_user" method="post">
+
+            <input class="inputBox" type="text" name="user_name" placeholder="Username" required>
+            <input class="inputBox" type="text" name="user_nickName" placeholder="nickName (5-10 chars)" minlength="5" maxlength="10" required>
+            <input class="inputBox" type="text" name="user_email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+            <select class="inputBox" list="user_Gender" name="user_Gender" placeholder="Gender" required >
+                                <option class="inputBox" value="male"> male</option>
+                                <option class="inputBox" value="female">female</option>
+                                </select>
+            <input class="inputBox" type="number" name="user_age" placeholder="age" min="18" max="92" required>
+            <input class="inputBox" type="text" name="user_ID" placeholder="ID (9 digits)" pattern="[0-9]{9}" required>
+            <input class="inputBox" type="password" name="user_password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br>
+            <input class="inputBox" id="regBot" type="submit" value="Add User">
+        </form>
+        </div>
+
+
+
+ <div class="updateFormDiv">
+  <table id="usersListToUpdateID" class="usersListToUpdateClass">
+    <thead>
+      <tr>
+          <th scope="col" style="display: none">#</th>
+        <th scope="col"> <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ID to Update" title="Type in a name">
+        </th>
+        <th scope="col">Name</th>
+        <th style="display: none" scope="col">NickName</th>
+        <th style="display: none" scope="col">Email</th>
+        <th style="display: none" scope="col">Gender</th>
+        <th style="display: none" scope="col">Age</th>
+        <th style="display: none" scope="col">Password</th>
+          <th>update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr id={{loop.index }}>
+        <td class="row-data"> {{ user.user_ID }}</td>
+            <th style="display: none" scope="row">{{loop.index}}</th>
+          <td  class="row-data" >{{ user.user_name }}</td>
+          <td style="display: none" class="row-data">{{ user.user_nickName }}</td>
+          <td style="display: none" class="row-data">{{ user.user_email }}</td>
+          <td style="display: none" class="row-data">{{ user.user_Gender }}</td>
+          <td style="display: none" class="row-data">{{ user.user_age }}</td>
+          <td style="display: none" class="row-data">{{ user.user_password }}</td>
+        <td><input type="button"
+                               value="update"
+                               onclick="show()" /></td>
+        </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+    <div class="w3-container">
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <h1> User Details</h1>
+              <p id="replace-me"></p>
+              <h2>you can update user details here</h2><br>
+
+          <form action="/update_user" method="post">
+                          <input id="userID_ID" style="display: none" class="inputBox" type="text" name="user_ID" placeholder="new ID (9 digits)" pattern="[0-9]{9}">
+                          <input class="inputBox" type="text" name="user_name" placeholder="new name" >
+                          <input class="inputBox" type="text" name="user_nickName" placeholder="new nickName(5-10 chars)" minlength="5" maxlength="10" >
+                          <input class="inputBox" type="text" name="user_email" placeholder="new email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                          <input class="inputBox" type="number" name="user_age" placeholder="new age" min="18" max="92" >
+                          <select class="inputBox" list="user_Gender" name="user_Gender" placeholder="new Gender" >
+                                                    <option class="inputBox" value="male"> male</option>
+                                                    <option class="inputBox" value="female">female</option>
+                          </select>
+
+                          <input class="inputBox" type="password" name="user_password" placeholder="new Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" ><br>
+                      <input class="inputBox" id="regBot" type="submit" value="update">
+              </form>
+              </div>
+            </div>
+          </div>
+        </div><br>
+
+    </div>
+
+
+
+     <div class="RemoveFormDiv">
+        <h2>Enter User ID to Remove User From list</h2>
+            <form action="/delete_user" method="post">
+                 <input class="inputBox" type="text" name="user_ID" placeholder="ID (9 digits)" pattern="[0-9]{9}" required><br>
+                <input class="inputBox" id="regBot" type="submit" value="Remove">
+            </form>
+            </div>
+
+
+
+
+
+
+
+    <a id="TableView" ></a>
+
+    <div class="usersTableDiv">
+          <table id="usersTable" class="table-fill">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>NickName</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>ID</th>
+        <th>Age</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.user_name }}</td>
+          <td>{{ user.user_nickName }}</td>
+          <td>{{ user.user_email }}</td>
+          <td>{{ user.user_Gender }}</td>
+          <td>{{ user.user_ID }}</td>
+          <td>{{ user.user_age }}</td>
+          <td>{{ user.user_password }}</td>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

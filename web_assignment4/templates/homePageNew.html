@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body >
+      {% set Navlink1 = "/"    %}
+      {% set Navlink2 = "/contact"    %}
+      {% set Navlink3 = "/assignment3_1"    %}
+      {% set Navlink4 = "/assignment_4"    %}
+
+      {% set NavlinkName1 = 'Home Page'    %}
+      {% set NavlinkName2 = 'Contact Us'    %}
+      {% set NavlinkName3 = 'assignment3'    %}
+      {% set NavlinkName4 = 'assignment4'    %}
+
+      {% set navColor = '#e7d3d3' %}
+
+{% include 'header.html' %}
+
+
+
+<div class="gallery"> 
+
+    <div  class="cardImage" id="item1" >
+        <img src="{{ url_for('static', filename='dogFood2.webp') }}"style="width:100%">
+        <div class="container">
+        <p>young dogs </p>
+        </div>
+    </div>
+
+    
+
+    <div  class="cardImage" id="item2">
+        <img src="{{ url_for('static', filename='adultsFood2.jpg') }}"style="width:100%">
+        <div class="container">
+        <p>adult dogs</p>
+        </div>
+    </div>
+
+
+    <div  class="cardImage" id="item3">
+        <img src="{{ url_for('static', filename='catFood.jpg') }}"style="width:100%">
+        <div class="container">
+        <p>adult cats</p>
+        </div>
+    </div>
+
+    <div  class="cardImage" id="item4">
+        <img src="{{ url_for('static', filename='puppyCatFood.jpg') }}"style="width:100%">
+        <div class="container">
+        <p>young cats</p>
+        </div>
+    </div>
+
+    <br><br>
+
+</div>
+ 
+<span id="loadMore">
+    <button id="loadMorebutton" class="click" onclick="showLoadMoreImg()">load more</button><br>
+</span>
+
+
+
+<div class="galleryLoadMore" id="galleryLoadMoreID">
+    <div  class="cardImage" id="item5">
+     <img src="{{ url_for('static', filename='perfectWeightCat.jpg') }}"style="width:100%">
+     <div class="container">
+     <p>perfect Weight</p>
+     </div>
+    </div>
+
+    <div  class="cardImage" id="item6">
+    <img src="{{ url_for('static', filename='largBread.jpg') }}"style="width:100%">
+    <div class="container">
+    <p>larg Bread</p>
+    </div>
+    </div> <br>
+</div><br>
+
+<span id="showLass">
+    <button id="showLassbutton" class="click" onclick="showLassImg()" >show Lass</button><br>
+</span><br><br>
+
+
+
+<div id="homeBody">
+    <h1  id='abouts'>about Us</h1 >
+    <p>At pet food israel, we provide your pets with
+        holistic foods, expertise, and more.</p>
+<span>Leave your contact details now
+     and a member of our international team will contact you shortly.
+</span><br> <br><br>
+<span>
+    <button id="readMore" class="click2" >Read More</button><br>
+</span>
+</div><br><br>
+        
+        
+    
+    
+    
+
+</body>
+</html>
+
